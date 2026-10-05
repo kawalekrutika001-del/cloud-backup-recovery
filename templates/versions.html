@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>File Recovery</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🔄 File Recovery</h1>
+
+    <p class="subtitle">
+        Version history for:
+        <strong>{{ filename }}</strong>
+    </p>
+
+
+    <!-- Flash Messages -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="message {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- Version History -->
+
+    <div class="card">
+
+        <h2>📦 Version History</h2>
+
+        {% if versions %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Version ID</th>
+
+                    <th>Date & Time</th>
+
+                    <th>Size</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for version in versions %}
+
+                <tr>
+
+                    <!-- Version ID -->
+
+                    <td>
+                        <small>
+                            {{ version.version_id }}
+                        </small>
+                    </td>
+
+
+                    <!-- Date -->
+
+                    <td>
+                        {{ version.last_modified.strftime("%d-%m-%Y %H:%M:%S") }}
+                    </td>
+
+
+                    <!-- Size -->
+
+                    <td>
+                        {{ "%.2f"|format(version.size / 1024) }} KB
+                    </td>
+
+
+                    <!-- Status -->
+
+                    <td>
+
+                        {% if version.delete_marker %}
+
+                            🗑️ Deleted
+
+                        {% elif version.is_latest %}
+
+                            ⭐ Current
+
+                        {% else %}
+
+                            📦 Previous
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <!-- Recovery -->
+
+                    <td>
+
+                        {% if not version.delete_marker %}
+
+                        <form
+                            action="{{ url_for(
+                                'recover_file',
+                                filename=filename,
+                                version_id=version.version_id
+                            ) }}"
+                            method="POST"
+                            style="display:inline;">
+
+                            <button
+                                type="submit"
+                                onclick="return confirm('Recover this version?');">
+
+                                🔄 Recover
+
+                            </button>
+
+                        </form>
+
+                        {% else %}
+
+                            —
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+            <p class="empty">
+                No previous versions found.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Back Button -->
+
+    <a href="{{ url_for('dashboard') }}">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

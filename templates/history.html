@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Backup History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📋 Backup History</h1>
+
+    <p class="subtitle">
+        Activity history for <strong>{{ username }}</strong>
+    </p>
+
+
+    <div class="card">
+
+        {% if history %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>File</th>
+                    <th>Action</th>
+                    <th>Version ID</th>
+                    <th>Size</th>
+                    <th>Date & Time</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for item in history %}
+
+                <tr>
+
+                    <td>
+                        {{ item.filename }}
+                    </td>
+
+                    <td>
+                        {{ item.action }}
+                    </td>
+
+                    <td>
+                        {% if item.version_id %}
+                            <small>{{ item.version_id }}</small>
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if item.file_size %}
+                            {{ "%.2f"|format(item.file_size / 1024) }} KB
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {{ item.timestamp }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p class="empty">
+            No backup activity recorded yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <a href="{{ url_for('dashboard') }}">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+
+</html>

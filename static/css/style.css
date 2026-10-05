@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* =========================
+   FORMS
+========================= */
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    font-size: 15px;
+}
+
+input[type="file"] {
+    margin-bottom: 15px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    background: #2563eb;
+    color: white;
+
+    border: none;
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+form button {
+    margin-top: 15px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f8fafc;
+    color: #475569;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.download-btn,
+.delete-btn {
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    margin: 3px;
+
+    font-size: 13px;
+}
+
+.download-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #1d4ed8;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.message {
+    padding: 13px 16px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    font-weight: 500;
+}
+
+.message.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.message.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty {
+    text-align: center;
+
+    color: #64748b;
+
+    padding: 30px;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a {
+    color: #2563eb;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 9px;
+    }
+
+}
